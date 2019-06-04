@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
+use \yii\helpers\Url;
 use \yii\helpers\Html;
 
 ?>
@@ -27,6 +28,9 @@ use \yii\helpers\Html;
     <?php endforeach; ?>
 <?php endif; ?>
 
-<a href="#" class="btn btn-success btn-lg">
+<a
+    href="<?php echo Url::to(['gift/spin', 'lottery_id' => $lottery->id]) ?>"
+    class="btn btn-success btn-lg"
+>
     <?php echo Yii::t('app', 'Spin The Wheel!') ?>
 </a>
