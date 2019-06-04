@@ -45,7 +45,17 @@ class Lottery extends \yii\db\ActiveRecord
     {
         return [
             [['date_start', 'date_end', 'money_left'], 'required'],
-            [['date_start', 'date_end', 'money_left', 'created_at', 'updated_at'], 'integer'],
+            [['money_left', 'created_at', 'updated_at'], 'integer'],
+            [
+                ['date_start'], 'date',
+                'timestampAttribute' => 'date_start',
+                'format' => 'mm/dd/yyyy'
+            ],
+            [
+                ['date_end'], 'date',
+                'timestampAttribute' => 'date_end',
+                'format' => 'mm/dd/yyyy'
+            ]
         ];
     }
 
@@ -58,7 +68,7 @@ class Lottery extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'date_start' => Yii::t('app', 'Date Start'),
             'date_end' => Yii::t('app', 'Date End'),
-            'money_left' => Yii::t('app', 'Money Left'),
+            'money_left' => Yii::t('app', 'Money Limit'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
