@@ -13,7 +13,7 @@ class m190604_062824_add_cc_number_column_to_user_table extends Migration
     public function safeUp()
     {
         $this->addColumn('{{%user}}', 'cc_number', $this->integer());
-        $this->addColumn('{{%user}}', 'loyalty_points', $this->integer());
+        $this->addColumn('{{%user}}', 'loyalty_points', $this->integer()->defaultValue(0));
         $this->addColumn('{{%user}}', 'address', $this->string());
         $this->addColumn('{{%user}}', 'full_name', $this->string());
     }
