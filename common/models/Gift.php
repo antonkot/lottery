@@ -23,6 +23,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class Gift extends \yii\db\ActiveRecord
 {
+    const GIFT_MONEY = 1;
+    const GIFT_LOYAL = 2;
+    const GIFT_THING = 3;
+
     /**
      * {@inheritdoc}
      */
@@ -78,6 +82,14 @@ class Gift extends \yii\db\ActiveRecord
     public function getLottery()
     {
         return $this->hasOne(Lottery::className(), ['id' => 'lottery_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getThing()
+    {
+        return $this->hasOne(Thing::className(), ['id' => 'thing_id']);
     }
 
     /**

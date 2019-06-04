@@ -49,12 +49,12 @@ class Lottery extends \yii\db\ActiveRecord
             [
                 ['date_start'], 'date',
                 'timestampAttribute' => 'date_start',
-                'format' => 'mm/dd/yyyy'
+                'format' => 'php:m/d/Y'
             ],
             [
                 ['date_end'], 'date',
                 'timestampAttribute' => 'date_end',
-                'format' => 'mm/dd/yyyy'
+                'format' => 'php:m/d/Y'
             ]
         ];
     }
