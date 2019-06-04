@@ -5,7 +5,7 @@ The lottery app. User can get one of the following: money, loyalty points or one
 ## Roadmap
 
 - [x] Install and configure Yii framework
-- [ ] Make migrations for User, Lottery, Gift and Thing models
+- [x] Make migrations for User, Lottery, Gift and Thing models
 - [ ] Make CRUD for models
 - [ ] Make console command for sending money in batch of N transactions
 - [ ] Make Unit-test for convertation from money to loyalty points
