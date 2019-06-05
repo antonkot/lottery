@@ -187,4 +187,46 @@ class GiftController extends \yii\web\Controller
             return false;
         }
     }
+
+    // Convert money to loyalty points
+    public function actionConvert($id)
+    {
+        $gift = Gift::findOne($id);
+
+        // Check errors
+        if ($gift == null) {
+            throw new \Exception("Gift not found");
+        }
+        if ($gift->sent != 0) {
+            throw new \Exception("Gift already sent");
+        }
+        if ($gift->user->id != Yii::$app->user->id) {
+            throw new \Exception("This is not your gift!");
+        }
+        if ($gift->type != Gift::GIFT_MONEY) {
+            throw new \Exception("Only money can be converted");
+        }
+
+        // Calculate amount from coefficient
+        $amount = $gift->amount * Yii::$app->params['coef_money_2_LP'];
+
+        // Update gift
+        $gift->type = Gift::GIFT_LOYAL;
+        $gift->sent = 1;
+        $gift->amount = $amount;
+
+        // We need to update 2 models at once.
+        // If one of them fails, the second should fail too.
+        $transaction = Yii::$app->db->beginTransaction();
+
+        try {
+            $gift->save();
+            $gift->user->updateCounters(['loyalty_points' => $amount]);
+            $transaction->commit();
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+        }
+
+        return $this->redirect(['index']);
+    }
 }
