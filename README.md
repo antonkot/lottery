@@ -8,6 +8,6 @@ The lottery app. User can get one of the following: money, loyalty points or one
 - [x] Make migrations for User, Lottery, Gift and Thing models
 - [x] Make CRUD for models
 - [ ] Make lottery front logic
-- [ ] Make console command for sending money in batch of N transactions
+- [x] Make console command for sending money in batch of N transactions
 - [ ] Make Unit-test for convertation from money to loyalty points
 - [ ] Cleanup
